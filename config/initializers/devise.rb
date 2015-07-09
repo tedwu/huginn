@@ -269,6 +269,12 @@ Devise.setup do |config|
     config.omniauth :wunderlist, key, secret
   end
 
+  if defined?(OmniAuth::Strategies::Facebook) &&
+      (key = ENV["FACEBOOK_OAUTH_KEY"]).present? &&
+      (secret = ENV["FACEBOOK_OAUTH_SECRET"]).present?
+      config.omniauth :facebook, key, secret
+  end
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
